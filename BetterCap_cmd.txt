@@ -1,0 +1,181 @@
+BETTERCAP Command list by Sara Carvalho
+
+
+-I, --interface IFACE
+BetterCAP will automatically detect your default network interface and use it, if you want to make it use another interface ( when you have more than one, let's say eth0 and wlan0 ) you can use this option.
+
+--use-mac ADDRESS
+Change the interface MAC address to this value before performing the attack.
+
+--random-mac
+Change the interface MAC address to a random one before performing the attack.
+
+-G, --gateway ADDRESS
+The same goes for the gateway, either let bettercap automatically detect it or manually specify its address.
+
+-T, --target ADDRESS1,ADDRESS2
+If no specific target is given on the command line, bettercap will spoof every single address on the network. There are cases when you already know the IP or MAC address of your target(s), in such cases you can use this option.
+
+--ignore ADDRESS1,ADDRESS2
+Ignore these IP addresses if found while searching for targets.
+
+--no-discovery
+Do not actively search for hosts, just use the current ARP cache, default to false.
+
+--no-target-nbns
+Disable target NBNS hostname resolution.
+
+--packet-throttle NUMBER
+Number of seconds ( can be a decimal number ) to wait between each packet to be sent.
+
+--check-updates
+Will check if any update is available and then exit.
+
+-h, --help
+Display the available options.
+
+-O, --log LOG_FILE
+Log all messages into a file, if not specified the log messages will be only print into the shell.
+
+--log-timestamp
+Enable logging with timestamps for each line, disabled by default.
+
+-D, --debug
+Enable debug logging, it is good practice to use this option while reporting a bug in order to have the full debug log of the program.
+
+--silent
+Suppress every message which is not an error or a warning, default to false.
+
+-S, --spoofer NAME
+Spoofer module to use, available: ARP, ICMP, NONE - default: ARP.
+
+--no-spoofing
+Disable spoofing, alias for --spoofer NONE / -S NONE.
+
+--kill
+Instead of forwarding packets, this switch will make targets connections to be killed.
+
+--full-duplex
+Enable full-duplex MITM, this will make bettercap attack both the target(s) and the router.
+
+-X, --sniffer
+Enable sniffer.
+
+-L, --local
+By default bettercap will only parse packets coming from/to other addresses on the network, if you also want to process packets being sent or received from your own computer you can use this option ( NOTE: will enable the sniffer ).
+
+--sniffer-source FILE
+Load packets from the specified PCAP file instead of the network interface ( NOTE: will enable the sniffer ).
+
+--sniffer-output FILE
+Save all packets to the specified PCAP file ( NOTE: will enable the sniffer ).
+
+--sniffer-filter EXPRESSION
+Configure the sniffer to use this BPF filter ( NOTE: will enable the sniffer ).
+
+-P, --parsers PARSERS
+Comma separated list of packet parsers to enable, * for all ( NOTE: will enable the sniffer ), available: COOKIE, CREDITCARD, DHCP, DICT, FTP, HTTPAUTH, HTTPS, IRC, MAIL, MPD, MYSQL, NNTP, NTLMSS, PGSQL, POST, REDIS, RLOGIN, SNMP, SNPP, URL, WHATSAPP, default to *.
+
+--custom-parser EXPRESSION
+Use a custom regular expression in order to capture and show sniffed data ( NOTE: will enable the sniffer ).
+--proxy-upstream-address ADDRESS
+If set, only requests coming from this server address will be redirected to the HTTP/HTTPS proxies.
+
+--allow-local-connections
+Allow direct connections to the proxy instance, default to false.
+
+--proxy
+Enable HTTP proxy and redirects all HTTP requests to it, default to false.
+
+--proxy-port PORT
+Set HTTP proxy port, default to 8080.
+
+--no-sslstrip
+Disable SSL stripping and HSTS bypass.
+
+--log-http-response
+Log HTTP responses.
+
+--proxy-module MODULE
+Ruby proxy module to load, either a custom file or one of the following: injectcss, injecthtml, injectjs.
+
+--http-ports PORT1,PORT2
+Comma separated list of HTTP ports to redirect to the proxy, default to 80.
+
+--proxy-https
+Enable HTTPS proxy and redirects all HTTPS requests to it, default to false.
+
+--proxy-https-port PORT
+Set HTTPS proxy port, default to 8083.
+
+--proxy-pem FILE
+Use a custom PEM CA certificate file for the HTTPS proxy, default to ~/.bettercap/bettercap-ca.pem.
+
+--https-ports PORT1,PORT2
+Comma separated list of HTTPS ports to redirect to the proxy, default to 443.
+
+--tcp-proxy
+Enable the TCP proxy ( requires other --tcp-proxy-* options to be specified ).
+
+--tcp-proxy-module MODULE
+Ruby TCP proxy module to load.
+
+--tcp-proxy-port PORT
+Set local TCP proxy port, default to 2222.
+
+--tcp-proxy-upstream-address ADDRESS
+Set TCP proxy upstream server address.
+
+--tcp-proxy-upstream-port PORT
+Set TCP proxy upstream server port.
+
+--tcp-proxy-upstream ADDRESS:PORT
+Set TCP proxy upstream server address and port ( shortcut for --tcp-proxy-upstream-address ADDRESS and --tcp-proxy-upstream-port PORT ).
+
+--udp-proxy
+Enable the UDP proxy ( requires other --udp-proxy-* options to be specified ).
+
+--udp-proxy-module MODULE
+Ruby UDP proxy module to load.
+
+--udp-proxy-port PORT
+Set local UDP proxy port, default to 2222.
+
+--udp-proxy-upstream-address ADDRESS
+Set UDP proxy upstream server address.
+
+--udp-proxy-upstream-port PORT
+Set UDP proxy upstream server port.
+
+--udp-proxy-upstream ADDRESS:PORT
+Set UDP proxy upstream server address and port ( shortcut for --udp-proxy-upstream-address ADDRESS and --udp-proxy-upstream-port PORT ).
+
+--custom-proxy ADDRESS
+Use a custom HTTP upstream proxy instead of the builtin one.
+
+--custom-proxy-port PORT
+Specify a port for the custom HTTP upstream proxy, default to 8080.
+
+--custom-https-proxy ADDRESS
+Use a custom HTTPS upstream proxy instead of the builtin one.
+
+--custom-https-proxy-port PORT
+Specify a port for the custom HTTPS upstream proxy, default to 8083.
+
+--custom-redirection RULE
+Apply a custom port redirection, the format of the rule is PROTOCOL ORIGINAL_PORT NEW_PORT. For instance TCP 21 2100 will redirect all TCP traffic going to port 21, to port 2100.
+
+--httpd
+Enable HTTP server, default to false.
+
+--httpd-port PORT
+Set HTTP server port, default to 8081.
+
+--httpd-path PATH
+Set HTTP server path, default to ./.
+
+--dns FILE
+Enable DNS server and use this file as a hosts resolution table.
+
+--dns-port PORT
+Set DNS server port, default to 5300.
